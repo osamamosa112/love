@@ -33,8 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // Background Music
+    const bgMusic = new Audio('/music.mp4');
+    bgMusic.loop = true;
+
     enterBtn.addEventListener('click', () => {
         console.log('Button clicked');
+        
+        // Start Music
+        bgMusic.play().catch(e => console.log("Audio play failed:", e));
+        
         entryScreen.style.opacity = '0';
         
         // Immediate switch for responsiveness
