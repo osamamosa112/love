@@ -20,31 +20,60 @@ function createHeart() {
 
 setInterval(createHeart, 300);
 
-// Typing Animation & Entry Logic
+// Entry Logic & Typing Animation
 document.addEventListener('DOMContentLoaded', () => {
     const enterBtn = document.getElementById('enterBtn');
     const entryScreen = document.getElementById('entryScreen');
     const mainContent = document.getElementById('mainContent');
     const message = "انتي مش بس حببتي دنتي كل حاجه في حياتي بجد انتي هديه وعوض ربنا ليا جيتيلي ف وقت كنت محتاجلك فيه وفعلا اختارت صح يا اعظم اختياراتي بشكر ربناانو عوضني بيكي يبنتي بحبك وهفضل احبك لاخر يوم ف عمري يحبيبه قلبييي وعاوزك تكوني عارفه انك اغلي منك في حياتي ومعنديش استعداد اخسرك وانتي بالنسبالي حببتي وبنتي وصحبتي وكل حاجه ليا ونا مليش ف الدنيا غيرك وربنا يقدرني واقدر اسعدك واكون سند ليكي يبنوتي 😍😍😍😘😘😍😘😘💗💗🫂";
 
+    // Pre-check
+    if (!enterBtn || !entryScreen || !mainContent) {
+        console.error('Elements not found');
+        return;
+    }
+
     enterBtn.addEventListener('click', () => {
+        console.log('Button clicked');
         entryScreen.style.opacity = '0';
+        
+        // Immediate switch for responsiveness
         setTimeout(() => {
             entryScreen.style.display = 'none';
             mainContent.style.display = 'block';
+            mainContent.style.opacity = '0';
             
-            // Start typing after showing content
-            new Typed('#typedMessage', {
-                strings: [message],
-                typeSpeed: 50,
-                backSpeed: 0,
-                loop: false,
-                showCursor: true,
-                cursorChar: '|',
-                autoInsertCss: true,
-                contentType: 'html'
-            });
-        }, 1000);
+            // Fade in main content
+            let op = 0;
+            const timer = setInterval(() => {
+                if (op >= 1) clearInterval(timer);
+                mainContent.style.opacity = op;
+                op += 0.1;
+            }, 50);
+
+            // Start typing
+            try {
+                new Typed('#typedMessage', {
+                    strings: [message],
+                    typeSpeed: 60,
+                    showCursor: true,
+                    cursorChar: '❤️',
+                    autoInsertCss: true,
+                });
+            } catch (e) {
+                // Fallback typing effect
+                let i = 0;
+                const speed = 50;
+                function typeWriter() {
+                    if (i < message.length) {
+                        document.getElementById("typedMessage").innerHTML += message.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, speed);
+                    }
+                }
+                typeWriter();
+            }
+        }, 800);
     });
 });
 
