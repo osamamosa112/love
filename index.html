@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Together Forever</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="entryScreen">
+        <div class="heart-loader">
+            <i class="fas fa-heart"></i>
+        </div>
+        <button id="enterBtn">Click to Start Our Story</button>
+    </div>
+
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="container" id="mainContent" style="display: none;">
+        <header class="header">
+            <h1>Our Story</h1>
+            <p>Every moment with you is a blessing</p>
+        </header>
+
+        <div class="timeline">
+            <div class="card">
+                <span class="date">15 / 11 / 2025</span>
+                <p class="event">أول يوم شوفنا بعض</p>
+            </div>
+
+            <div class="card">
+                <span class="date">17 / 11 / 2025</span>
+                <p class="event">اول يوم اتكلمنا فيه</p>
+            </div>
+
+            <div class="card">
+                <span class="date">19 / 11 / 2025</span>
+                <p class="event">اول يوم قولتلك بحبك</p>
+            </div>
+
+            <div class="card">
+                <span class="date">26 / 03 / 2026</span>
+                <p class="event">اول عيد ميلاد ليكى معايا</p>
+            </div>
+        </div>
+
+        <div class="counter-section">
+            <h2>مع بعض بقالنا</h2>
+            <div class="days-count">135</div>
+            <p style="margin-top: 10px; font-family: 'Amiri', serif;">يوم</p>
+        </div>
+
+        <div class="message-section" id="messageSection">
+            <span id="typedMessage"></span>
+        </div>
+    </div>
+
+    <button class="music-btn" id="musicToggle">
+        <i class="fas fa-heart"></i>
+    </button>
+
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
