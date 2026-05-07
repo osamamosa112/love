@@ -51,28 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 op += 0.1;
             }, 50);
 
-            // Start typing
-            try {
-                new Typed('#typedMessage', {
-                    strings: [message],
-                    typeSpeed: 60,
-                    showCursor: true,
-                    cursorChar: '❤️',
-                    autoInsertCss: true,
-                });
-            } catch (e) {
-                // Fallback typing effect
-                let i = 0;
-                const speed = 50;
-                function typeWriter() {
-                    if (i < message.length) {
-                        document.getElementById("typedMessage").innerHTML += message.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, speed);
-                    }
+            // Start typing with custom function
+            let i = 0;
+            const speed = 70;
+            const target = document.getElementById("typedMessage");
+            target.innerHTML = ""; // Clear first
+            
+            function typeWriter() {
+                if (i < message.length) {
+                    target.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    // Add a pulsing heart at the end
+                    target.innerHTML += ' <span class="heart-loader" style="font-size: 1.5rem; display: inline-block;">❤️</span>';
                 }
-                typeWriter();
             }
+            typeWriter();
         }, 800);
     });
 });
