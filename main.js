@@ -33,17 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Background Music
+    // Background Music (from public folder)
     const bgMusic = new Audio('/music.mp4');
     bgMusic.loop = true;
+    bgMusic.preload = 'auto';
 
     enterBtn.addEventListener('click', () => {
-        console.log('Button clicked');
+        console.log('Button clicked, playing audio');
         
-        // Start Music
-        bgMusic.play().catch(e => console.log("Audio play failed:", e));
-        
-        entryScreen.style.opacity = '0';
+        // Start Music with explicit user interaction
+        bgMusic.play().then(() => {
+            console.log("Audio playing successfully");
+        }).catch(e => {
+            console.error("Audio play failed:", e);
+            // Fallback: try playing again on any touch
+            document.addEventListener('click', () => bgMusic.play(), { once: true });
+        });
         
         // Immediate switch for responsiveness
         setTimeout(() => {
